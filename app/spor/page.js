@@ -1,35 +1,31 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import Navbar from "../components/Navbar";
 import Article from "../components/Article";
 import Footer from "../components/Footer";
 import Currency from "../components/Currency";
 import Weather from "../components/Weather";
-export default function Gundem() {
+export default function Spor() {
   const [journals, setJournals] = useState([]);
-  const [page, setPage] = useState(1);
   useEffect(() => {
-    const getJournals = async () => {
-      await axios
-        .get(
-          `https://newsapi.org/v2/top-headlines?country=tr&category=general&apiKey=71635681bdee4c82a86e4af023126b13`
-        )
-        .then((response) => {
-          setJournals(response.data.articles);
+    const getArticle = async () =>{
+        await axios
+        .get(`https://newsapi.org/v2/top-headlines?country=tr&category=sports&apiKey=71635681bdee4c82a86e4af023126b13`)
+        .then((response)=>{
+            setJournals(response.data.articles)
         })
-        .catch((err) => {
-          console.log(err);
-        });
-    };
-    getJournals();
-  }, [page]);
-
+        .catch((err)=>{
+            console.log(err)
+        })
+    }
+    getArticle();
+  }, []);
   return (
     <>
       <div className="flex flex-col justify-center">
         <Navbar />
-        <div className="flex flex-col tb:flex-row justify-around items-center gap-1 p-1 tb:p-4 m:p-1.5">
+        <div className="flex flex-col tb:flex-row justify-around items-center p-1 m:p-1.5">
           <Currency />
           <Weather />
         </div>

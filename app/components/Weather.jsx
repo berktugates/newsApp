@@ -19,7 +19,7 @@ export default function Weather() {
   }, []);
   return (
     <>
-      <div className="flex border rounded-lg items-center p-2">
+      <div className="flex border rounded-lg items-center justify-center p-2">
         {weather && weather.days && weather.days[0] ? ( // Check for data presence
             <div className="flex items-center gap-2 me-4">
               <p className="text-xs m:text-sm l:text-base text-center font-semibold">{weather.currentConditions.temp}{"C°"}</p>

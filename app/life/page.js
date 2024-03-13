@@ -6,30 +6,26 @@ import Article from "../components/Article";
 import Footer from "../components/Footer";
 import Currency from "../components/Currency";
 import Weather from "../components/Weather";
-export default function Gundem() {
-  const [journals, setJournals] = useState([]);
-  const [page, setPage] = useState(1);
-  useEffect(() => {
-    const getJournals = async () => {
-      await axios
-        .get(
-          `https://newsapi.org/v2/top-headlines?country=tr&category=general&apiKey=71635681bdee4c82a86e4af023126b13`
-        )
-        .then((response) => {
-          setJournals(response.data.articles);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    };
-    getJournals();
-  }, [page]);
-
+export default function Life() {
+    const [journals, setJournals] = useState([]);
+    useEffect(()=>{
+        const getArticles = async () =>{
+            await axios
+            .get(`https://newsapi.org/v2/top-headlines?country=tr&category=health&apiKey=71635681bdee4c82a86e4af023126b13`)
+            .then((response)=>{
+                setJournals(response.data.articles)
+            })
+            .catch((err)=>{
+                console.log(err)
+            })
+        }
+        getArticles();
+    },[])
   return (
     <>
       <div className="flex flex-col justify-center">
         <Navbar />
-        <div className="flex flex-col tb:flex-row justify-around items-center gap-1 p-1 tb:p-4 m:p-1.5">
+        <div className="flex flex-col tb:flex-row justify-around items-center p-1 m:p-1.5">
           <Currency />
           <Weather />
         </div>
